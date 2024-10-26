@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="vi">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cài Đặt Jenkins trên Linux (Debian/Ubuntu) &mdash; Tài liệu Jenkins Documentation 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=bf3d5b4e"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../_static/translations.js?v=71464233"></script>
+      <script src="../_static/clipboard.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Tìm Kiếm" href="../search.html" />
+    <link rel="next" title="Cài đặt Jenkins với Docker" href="install_docker.html" />
+    <link rel="prev" title="Cài đặt Jenkins trên Windows" href="install_window.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Jenkins Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="install_jenkins.html">Cài đặt Jenkins</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="install_window.html">Cài đặt Jenkins trên Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install_window.html#cach-cai-dat-java">1. Cách cài đặt Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install_window.html#cach-cai-dat-jenkins">2. Cách cài đặt Jenkins</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cài Đặt Jenkins trên Linux (Debian/Ubuntu)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_docker.html">Cài đặt Jenkins với Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/appendix.html">Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/appendix.html#cach-cai-dat-jdk">Cách cài đặt JDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../appendix/install_jdk.html">Cài đặt JDK trên Window</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Jenkins Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="install_jenkins.html">Cài đặt Jenkins</a></li>
+      <li class="breadcrumb-item active">Cài Đặt Jenkins trên Linux (Debian/Ubuntu)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/install_jenkins/install_linux.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cai-dat-jenkins-tren-linux-debian-ubuntu">
+<h1>Cài Đặt Jenkins trên Linux (Debian/Ubuntu)<a class="headerlink" href="#cai-dat-jenkins-tren-linux-debian-ubuntu" title="Permalink to this heading"></a></h1>
+<p>Khác với Window, việc cài đặt Jenkins trên linux dễ dàng hơn nhiều, vì mình không có host Linux riêng biệt nên tạm thời sử dụng WSL2 thay thế.</p>
+<p>Đây là hướng dẫn chi tiết để cài đặt Jenkins trên hệ điều hành Linux như Ubuntu.</p>
+<div class="subject">
+    Cài đặt JDK
+</div><ul class="simple">
+<li><p>Cập nhật danh sách gói</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</pre></div>
+</div>
+<p>Jenkins yêu cầu Java để chạy, sử dụng JRE hoặc JDK phiên bản 17 trở lên là phù hợp.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openjdk-17-jre
+</pre></div>
+</div>
+<p>Kiểm tra phiên bản Java để đảm bảo cài đặt thành công.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>java<span class="w"> </span>-version
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/install_linux_1.png"><img alt="Install java on Linux" class="align-center" src="../_images/install_linux_1.png" style="width: 100%;" /></a>
+<div class="subject">
+    Cài đặt Jenkins
+</div><ul class="simple">
+<li><p>Thêm kho lưu trữ Jenkins</p></li>
+</ul>
+<p>Đầu tiên, thêm khoá GPG của Jenkins vào hệ thống của bạn.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span><span class="se">\</span>
+/usr/share/keyrings/jenkins-keyring.asc<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</pre></div>
+</div>
+<p>Sau đó, thêm đường dẫn kho lưu trữ Jenkins vào danh sách nguồn của apt.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \</span>
+<span class="s2">https://pkg.jenkins.io/debian-stable binary/&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span><span class="se">\</span>
+/etc/apt/sources.list.d/jenkins.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/install_linux_2.png"><img alt="Install Jenkins on Linux" class="align-center" src="../_images/install_linux_2.png" style="width: 100%;" /></a>
+<ul class="simple">
+<li><p>Cập nhật lại danh sách gói</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Cài đặt Jenkins</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>jenkins
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/install_linux_3.png"><img alt="Install Jenkins on Linux successfully" class="align-center" src="../_images/install_linux_3.png" style="width: 100%;" /></a>
+<ul class="simple">
+<li><p>Khởi động service Jenkins</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>jenkins.service
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Kiểm tra trạng thái service của Jenkins</p></li>
+</ul>
+<p>Sử dụng lệnh sau để xem trạng thái hiện tại của dịch vụ Jenkins.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>jenkins
+</pre></div>
+</div>
+<p>Nếu bạn thấy <code class="docutils literal notranslate"><span class="pre">Active:</span> <span class="pre">active</span> <span class="pre">(running)</span></code> như ảnh thì nghĩa là service của Jenkins đã được khởi động thành công và đang chạy.</p>
+<a class="reference internal image-reference" href="../_images/install_linux_4.png"><img alt="Check status of Jenkins" class="align-center" src="../_images/install_linux_4.png" style="width: 100%;" /></a>
+<p>Bây giờ, bạn có thể truy cập Jenkins qua trình duyệt web của mình tại địa chỉ
+<a href="#id1"><span class="problematic" id="id2">`http://&lt;địa chỉ IP của máy chủ&gt;:8080 &lt;http://&lt;địa chỉ IP của máy chủ&gt;:8080&gt;`_</span></a> hoặc <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>.</p>
+<p>Tuy nhiên, lần đầu truy cập các bạn sẽ phải <code class="docutils literal notranslate"><span class="pre">Unlock</span> <span class="pre">Jenkins</span></code>. Như ảnh bên dưới các bạn sẽ cần nhập Administrator password.</p>
+<a class="reference internal image-reference" href="../_images/install_linux_5.png"><img alt="Access server Jenkins" class="align-center" src="../_images/install_linux_5.png" style="width: 100%;" /></a>
+<p>Bạn có thể sử dụng lệnh này để lấy mật khậu khởi tạo ban đầu, lưu ý dùng <code class="docutils literal notranslate"><span class="pre">sudo</span></code> để tránh bị lỗi Access denied.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cat<span class="w"> </span>/var/lib/jenkins/secrets/initialAdminPassword
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/install_linux_6.png"><img alt="Get password" class="align-center" src="../_images/install_linux_6.png" style="width: 100%;" /></a>
+<div style="margin-bottom:20px;"></div></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install_window.html" class="btn btn-neutral float-left" title="Cài đặt Jenkins trên Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install_docker.html" class="btn btn-neutral float-right" title="Cài đặt Jenkins với Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Khanh Phan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

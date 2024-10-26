@@ -1,0 +1,47 @@
+Cài đặt Jenkins
+===============
+
+Để cài đặt Jenkins, bạn cần làm theo các bước sau:
+
+1. Cài đặt Java:
+
+   .. code-block:: bash
+
+      sudo apt update
+      sudo apt install openjdk-11-jdk
+
+2. Cài đặt Jenkins:
+
+   .. code-block:: bash
+
+      wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+      sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+      sudo apt update
+      sudo apt install jenkins
+
+   .. code-block:: bash
+
+      version: '2'
+
+      services:
+         db:
+         image: mysql:5.7
+         volumes:
+            - ./data:/var/lib/mysql
+         restart: always
+         environment:
+            MYSQL_ROOT_PASSWORD: wordpress
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wordpress
+            MYSQL_PASSWORD: wordpress
+
+         wordpress:
+         depends_on:
+            - db
+         image: wordpress:latest
+         ports:
+            - "8000:80"
+         restart: always
+         environment:
+            WORDPRESS_DB_HOST: db:3306
+            WORDPRESS_DB_PASSWORD: wordpress

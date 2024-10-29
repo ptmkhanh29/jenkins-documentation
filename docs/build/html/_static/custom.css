@@ -48,8 +48,8 @@ button:hover {
 }
 
 .subject {
-    font-size: 24px; /* Thiết lập kích cỡ chữ mong muốn */
+    font-size: 30px; /* Thiết lập kích cỡ chữ mong muốn */
     font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

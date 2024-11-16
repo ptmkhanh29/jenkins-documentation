@@ -2,6 +2,7 @@
     --md-primary-fg-color:        #EE0F0F;
     --md-primary-fg-color--light: #ECB7B7;
     --md-primary-fg-color--dark:  #90030C;
+    color: black;
 }
 
 h1 {
@@ -23,10 +24,11 @@ h3 {
 }
 
 blockquote {
-    border-left: 5px solid #ccc; /* Thêm viền trái màu xám */
-    background-color: #f9f9f9; /* Nền màu xám nhạt */
-    margin: 0; /* Khoảng cách trên dưới 20px, trái phải 10px */
-    padding: 20px 20px 2px 20px; /* Đệm trên dưới 10px, trái phải 20px */
-    font-style: italic; /* Font chữ nghiêng */
-    color: #333333; /* Màu chữ đậm hơn một chút */
+    border-left: 5px solid #b4ecff;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 10px 20px 1px 20px;
+    font-style: italic;
+    color: #5a5a5a;
+    line-height: 1.6;
 }

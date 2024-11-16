@@ -10,17 +10,6 @@ use_directory_urls: true
 
 theme:
   name: readthedocs
-  palette:
-    primary: indigo
-  features:
-    - navigation.instant
-    - navigation.footer
-    - navigation.expand
-    - search.suggest
-  font:
-    code: Roboto Mono
-  plugins:
-    - search
   highlightjs: true
   hljs_languages:
     - yaml

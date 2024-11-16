@@ -5,6 +5,8 @@
 > **Tóm lại**
 >
 > Đôi khi có vài sự cố không mong muốn và bạn cần phải di chuyển Jenkins server sang một máy khác. Lúc này vấn đề đặt ra là làm sao setup, đồng bộ môi trường, sao lưu, khôi phục data Jenkins như máy cũ mà tốn ít thời gian và công sức nhất. Do đó mình quyết định sẽ custom lại Jenkins server bằng `docker`.
+>
+> Bài viết này chỉ hướng dẫn làm sao tạo container cho Jenkins từ đầu. Trong bài viết tiếp theo mình sẽ hướng dẫn làm sao di chuyển Jenkins đã có sẵn vào Docker mà vẫn bảo toàn tài nguyên, tối ưu hóa quá trình di chuyển, quản lý.
 
 ---------------------------------------------
 ## Nội dung chính
@@ -44,7 +46,10 @@ Từ những step đã mô tả ở trên, trong thư mục `resources-jenkins-d
 
 ```yaml
 # Sử dụng image Jenkins LTS chính thức của Docker Hub làm base image
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:lts-jdk17
+
+# Dùng root để đảm bảo đủ quyền cấu hình các tác vụ bên dưới.
+USER root
 
 # Tắt cài đặt Wizard UI
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
@@ -71,8 +76,12 @@ USER jenkins
 
 ```yaml
 # Sử dụng image Jenkins LTS chính thức của Docker Hub làm base image
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:lts-jdk17
 ```
+
+Bạn có thể truy cập vào [Docker Hub](https://hub.docker.com/r/jenkins/jenkins) của Jenkins để tìm tên images
+
+![Inital Install](images/image4.png "Example Image")
 
 **⚙️ Tắt Setup Wizard UI**: Nếu bạn từng cài Jenkins thủ công trên máy rồi sẽ thấy lần đầu truy cập Jenkins qua trình duyệt nó sẽ hiển thị phần Setup Wizard. Wizard này yêu cầu bạn phải thực hiện các bước gồm: nhập mật khẩu ban đầu từ tệp `initialAdminPassword`, `cài đặt plugins` suggested hoặc custom, và thiết lập `user admin` cho Jenkins.
 
@@ -214,6 +223,46 @@ Dòng `volumes` ở trên sẽ thiết lập một volume với tên là `jenkin
 
 - Mở cổng 50000 để Jenkins agents có thể connect đến Jenkins master thông qua JNLP.
 
-> Block code
-> 
-> Hello
+**Tạo file `plugins.txt` chứa các plugins cần cài đặt**
+
+Mình có truy cập vào repo chính thức của Jenkins trên Github để tìm các plugins mà họ suggested cho user và collect nó vào file `plugins.txt`. Mọi người có thể truy cập để tham khảo [Plugins Jenkins](https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/install/platform-plugins.json)
+
+```yaml
+cloudbees-folder:latest
+antisamy-markup-formatter:latest
+build-timeout:latest
+credentials-binding:latest
+timestamper:latest
+ws-cleanup:latest
+ant:latest
+gradle:latest
+workflow-aggregator:latest
+github-branch-source:latest
+pipeline-github-lib:latest
+pipeline-stage-view:latest
+git:latest
+ssh-slaves:latest
+ssh-agent:latest
+ssh-credentials:latest
+matrix-auth:latest
+pam-auth:latest
+ldap:latest
+email-ext:latest
+mailer:latest
+build-with-parameters:latest
+extended-choice-parameter:latest
+dynamic_extended_choice_parameter:latest
+```
+Mọi thứ cần thiết đã xong, mình sẽ dụng lệnh `docker-compose up` để tạo image và run container cho Jenkins của mình.
+
+![Inital Install](images/image5.png "Example Image")
+
+Sau đó, truy cập vào web browser địa chỉ [http://localhost:8080/](http://localhost:8080/) để truy cập Jenkins server
+
+![Inital Install](images/image6.png "Example Image")
+
+Lúc này bạn chỉ việc Login bằng account đã define trong `.env` thôi.
+
+![Inital Install](images/image7.png "Example Image")
+
+Okay, việc setup một Jenkins container mới tinh đến đây đã hoàn thành.

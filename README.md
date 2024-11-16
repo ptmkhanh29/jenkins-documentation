@@ -24,7 +24,7 @@
 
 ![Blog Jenkins Documentation](image-project/describle_project.png "Blog Jenkins Documentation")
 
-Đây là link của [Blog Jenkins Documentation](https://github.com/hocchudong/ghichep-docker) mọi người ghé qua ủng hộ nhé.
+Đây là link của [Blog Jenkins Documentation](https://jenkins-documentation.readthedocs.io/vi/latest/) mọi người ghé qua ủng hộ nhé.
 
 **🔋 Lí do có cái documentation này**
 

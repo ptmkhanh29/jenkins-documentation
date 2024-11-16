@@ -1,0 +1,34 @@
+site_name: Jenkins Documentation
+
+nav:
+    - Home: 'index.md'
+    - Build Server Jenkins: build-container-jenkins/dong-goi-jenkins-server-bang-docker.md
+    - Jenkins Basics: 'jenkins-basic.md'
+    - Jenkins Advanced: 'jenkins-advanced.md'
+
+use_directory_urls: true
+
+theme:
+  name: readthedocs
+  palette:
+    primary: indigo
+  features:
+    - navigation.instant
+    - navigation.footer
+    - navigation.expand
+    - search.suggest
+  font:
+    code: Roboto Mono
+  plugins:
+    - search
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - rust
+    - python
+    - javascript
+    - markdown
+    - bash
+  
+extra_css:
+  - stylesheets/extra.css

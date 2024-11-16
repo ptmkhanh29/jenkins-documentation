@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+    jenkins:
+        container_name: jenkins-container       # Đặt tên cho container tùy ý
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                JENKINS_USER: ${JENKINS_USER}   # Truyền 2 arguments vào Dockerfile
+                JENKINS_PASS: ${JENKINS_PASS}
+        image: jenkins-image                    # Đặt tên cho image tùy ý             
+        volumes:
+            - jenkins_data:/var/jenkins_home
+        restart: always
+        env_file:
+            - .env
+        environment:
+            JENKINS_USER: ${JENKINS_USER}
+            JENKINS_PASS: ${JENKINS_PASS}
+        ports:
+            - "8080:8080"                       
+            - "50000:50000"
+volumes:
+  jenkins_data:
